@@ -8,13 +8,11 @@ function create_target() {
   echo "" >  $target
 }
 function append_to_target() {
-  str=$1
-  echo "$str=\${$str}" >> $target;
+  echo "$1=${!1}" >> $target;
 }
 
 
 # Make .env file to specific target project.
 create_target
-append_to_target "workspace"
 append_to_target "persist_data"
-append_to_target "workspace"
+append_to_target "docker_volume_name"
