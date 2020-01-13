@@ -11,8 +11,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - workspace=/develop/
+        - develop_env=/develop/
         - persist_data=${persist_data}
     volumes:
       - data:${persist_data}
-    
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"    

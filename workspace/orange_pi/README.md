@@ -1,3 +1,5 @@
+
+### ABOUT this sub-project.
 This project is an encapsulation of build system of orange pi board. It provides Dockfile, docker-compose yaml file and some scripts to create a dockerized environment integrated with VS code to build orange pi smoothly and save your time.
 
 Before you run the script, please make sure you have a properly installed docker environment in your os. And all the script is written in shell script. I am sorry about the user who have shell runtime environment.
@@ -9,15 +11,14 @@ Before executing the scripts, you could read following note or skip to run scrip
 For OrangePi OnePlus/Lite2/3, the folder is OrangePiH6_Linux4.9 or OrangePiH6_mainline.
 ```
 
-2. You can easier to control the official released tool by change config file (script_to_container/config/config.properties) If you want to create BSP with linux 4.9 version for OrangePi OnePlus, fill the target name with OrangePiH6_Linux4.9 which is the same as the directory to be create.
+2. You can easier to control the official released tool by change config file (contents-to-loaded-in-container/config/config.properties) If you want to create BSP with linux 4.9 version for OrangePi OnePlus, fill the target name with OrangePiH6_Linux4.9 which is the same as the directory to be create.
 
-Run scripts:
+### Run scripts:
 
 1. To run VS code, on the current folder run:
 
 ```
-# The folder is
-# workspace/orange_pi
+# The folder is workspace/orange_pi, run "code" here.
 code .
 ```
 2. VS code will find container configuration file inside, choose "Reopen in container".
@@ -47,3 +48,18 @@ bash 2_pull_build_projects.sh
 ```
 bash 3_build_current_bsp.sh
 ```
+
+### Other:
+
+After vs code make container running properly. You will see three special folders in root:
+```
+/develop
+/persistent_data
+/workspace
+
+```
+|folder name|discription|
+|-|-|
+|/persistant_data|Where the storage is connected to the persistent docker volume we had created. All source code pulled and built program should be here exactly and linked to /develop. If you want to do other modification, a good way to use this folder is make soft link to this storage.
+|/develop|Where we put scripts to run, also the workspace we set in .devcontainer/devcontainer.json. Once VS Code have initialized this project, you will find terminal is starting on this folder. This folder also contains all the files copied from "contents-to-loaded-in-container". It should be noted that it is just belong to writable layer of this container. The things within the folder exists until the container removed. To make your modification, you can put the files want to transfer to container before starting container, it will make transferring automatically.|
+|/workspace|Where the volume shared with the current folder. Also you can edit and modify the files outside the container.|

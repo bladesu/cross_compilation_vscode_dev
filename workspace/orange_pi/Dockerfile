@@ -16,11 +16,11 @@ RUN apt-get -y --fix-missing install \
       dosfstools libncurses5-dev debootstrap \
       swig libpython2.7-dev libssl-dev python-minimal dos2unix
 # add user and its home dir
-ARG workspace
+ARG develop_env
 ARG persist_data
-ENV workspace=${workspace}
+ENV develop_env=${develop_env}
 ENV persist_data=${persist_data}
-RUN mkdir ${workspace}
-WORKDIR ${workspace}
-COPY ./script_to_container ${workspace}/
+RUN mkdir ${develop_env}
+WORKDIR ${develop_env}
+COPY ./contents-to-loaded-in-container ${develop_env}/
 RUN mkdir ${persist_data}

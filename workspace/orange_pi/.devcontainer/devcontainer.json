@@ -3,7 +3,6 @@
 
 	"dockerComposeFile": [
 		"../docker-compose.yml",
-		"docker-compose.yml"
 	],
 
 	"service": "cross_dev_orange",
