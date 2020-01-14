@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  data:
+    external:
+      name: ${docker_volume_name}
+
+services:
+  ubuntu14_c_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - develop_env=/develop/
+        - persist_data=${persist_data}
+    volumes:
+      - data:${persist_data}
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"    
