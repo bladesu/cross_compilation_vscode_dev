@@ -8,6 +8,7 @@ This project provide a solution to create an isolated enviroment to make cross-c
 
 Please refer to following link in "Installation" part to get start: https://code.visualstudio.com/docs/remote/containers#_devcontainerjson-reference
 
+## Volume setup
 
 In the beginning and end of development, you should manage a persistent volume for the source code and built files. This whole project have beed designed based on an isolated storage. The source code or built files probably be different within different filesystem.
 
@@ -38,10 +39,18 @@ bash script/create_nfs_readonly_folder.sh
 bash script/remove_nfs_readonly_folder.sh
 ```
 
-To start the specific project, make config file to assigned workspace. Modify config/config.properties: "which_workspace_you_choose" to the project in workspace, and run make config file(.env file for docker-compose) to project folder within workspace.
+## Setup configuration
+
+Before starting the specific project for our pre-defined target in our workspace, we have to make and send config file to assigned workspace. Modify config/config.properties: "which_workspace_you_choose" to the project in workspace, and run make config file(.env file for docker-compose) to project folder within workspace. If you want to start new target sub-project in workspace, you have to create new folder in workspace and also make this configuration setup.
 ```
-# create config to the assigned project in workspace
+# 1. edit config/config.properties
+
+# 2. create config to the assigned project in workspace
 bash script/make_config_to_project.sh
 ```
 
-After make_config_to_project.sh, you can run "code ." in the project. After that, vs code can start the container and development UI.
+## Start VS Code in assigned sub-project
+
+After make_config_to_project.sh, you can run "code ." in the sub-folder in workspace. After that, vs code can start the container and development UI.
+
+
