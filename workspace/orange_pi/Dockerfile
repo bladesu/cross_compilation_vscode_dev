@@ -1,4 +1,4 @@
-From ubuntu:14.04
+FROM ubuntu:14.04
 
 RUN apt-get update
 RUN apt-get install -y \
@@ -15,6 +15,12 @@ RUN apt-get -y --fix-missing install \
       lib32z1 lib32z1-dev qemu-user-static bison \
       dosfstools libncurses5-dev debootstrap \
       swig libpython2.7-dev libssl-dev python-minimal dos2unix
+# to view info
+RUN apt-get install -y tree
+RUN apt-get install -y tmux
+
+# gcc for arm
+RUN apt-get install -y gcc-aarch64-linux-gnu
 # add user and its home dir
 ARG develop_env
 ARG persist_data
