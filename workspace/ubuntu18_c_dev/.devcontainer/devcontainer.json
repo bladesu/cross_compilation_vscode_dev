@@ -1,0 +1,16 @@
+{
+	"name": "Existing Docker Compose (Extend)",
+
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+	],
+
+	"service": "ubuntu18_c_dev",
+	"workspaceFolder": "/workspace/",
+
+	"settings": { 
+		"terminal.integrated.shell.linux": null
+	},
+
+	"extensions": []
+}
